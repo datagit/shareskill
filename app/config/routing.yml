@@ -1,0 +1,14 @@
+my_user:
+    resource: "@MyUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_data_source:
+    resource: "@MyDataSourceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

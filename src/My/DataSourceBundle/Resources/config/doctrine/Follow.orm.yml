@@ -1,0 +1,31 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/Follow.orm.yml
+My\DataSourceBundle\Entity\Follow:
+  repositoryClass: My\DataSourceBundle\Repository\FollowRepository
+  type: entity
+  table: follow
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    follower_id:
+      type: integer
+      nullable: true
+    followed_id:
+      type: integer
+      nullable: true
+    status:
+      type: integer
+      nullable: true
+      options:
+        default: 1
+        comment: 1-active, 2-unactive
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

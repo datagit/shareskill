@@ -1,0 +1,31 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/Notification.orm.yml
+My\DataSourceBundle\Entity\Notification:
+  repositoryClass: My\DataSourceBundle\Repository\NotificationRepository
+  type: entity
+  table: notification
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    pusher_id:
+      type: integer
+      nullable: true
+    receiver_id:
+      type: integer
+      nullable: true
+    status:
+      type: integer
+      nullable: true
+      options:
+        default: 1
+        comment: 1-unread, 2-read
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

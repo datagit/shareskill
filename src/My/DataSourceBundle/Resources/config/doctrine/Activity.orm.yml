@@ -1,0 +1,59 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/Activity.orm.yml
+My\DataSourceBundle\Entity\Activity:
+  repositoryClass: My\DataSourceBundle\Repository\ActivityRepository
+  type: entity
+  table: activity
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 255
+    description:
+      type: text
+      nullable: true
+    image:
+      type: string
+      length: 255
+      nullable: true
+    user_id_pointed:
+      type: string
+      length: 255
+      nullable: true
+      options:
+        comment: 1,2,3 list another profile point
+    point:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: total point of activity
+    activity_type:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: 0-article, 1-job
+    status:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: 1-public, 2-private
+    view:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: totla view of activity
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

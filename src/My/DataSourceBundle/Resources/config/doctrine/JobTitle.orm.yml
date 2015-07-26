@@ -1,0 +1,23 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/JobTitle.orm.yml
+My\DataSourceBundle\Entity\JobTitle:
+  repositoryClass: My\DataSourceBundle\Repository\JobTitleRepository
+  type: entity
+  table: jobtitle
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 255
+      unique: true
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

@@ -1,0 +1,25 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/ApplyJob.orm.yml
+My\DataSourceBundle\Entity\ApplyJob:
+  repositoryClass: My\DataSourceBundle\Repository\ApplyJobRepository
+  type: entity
+  table: applyjob
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    job_id:
+      type: integer
+      nullable: true
+    user_id:
+      type: integer
+      nullable: true
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

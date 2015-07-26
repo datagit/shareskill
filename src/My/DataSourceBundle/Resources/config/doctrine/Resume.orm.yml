@@ -1,0 +1,90 @@
+# src/My/DataSourceBundle/Resources/config/doctrine/Resume.orm.yml
+My\DataSourceBundle\Entity\Resume:
+  repositoryClass: My\DataSourceBundle\Repository\ResumeRepository
+  type: entity
+  table: resume
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    user_id:
+      type: integer
+    email:
+      type: string
+      length: 255
+      unique: true
+    first_name:
+      type: string
+      length: 255
+    last_name:
+      type: string
+      length: 255
+    bithday:
+      type: datetime
+      nullable: true
+    phone:
+      type: string
+      length: 255
+      nullable: true
+    address:
+      type: string
+      length: 255
+      nullable: true
+    job_title:
+      type: string
+      length: 255
+      nullable: true
+    salary_min:
+      type: integer
+      nullable: true
+    salary_max:
+      type: integer
+      nullable: true
+    job_title_id:
+      type: string
+      length: 255
+      nullable: true
+      options:
+        comment: 1,2,3..
+    cleaning_json:
+      type: text
+      nullable: true
+      options:
+        comment: list process cleaning
+    skill_json:
+      type: text
+      nullable: true
+      options:
+        comment: list skill
+    job_history_json:
+      type: text
+      nullable: true
+      options:
+        comment: list job history
+    last_view:
+      nullable: true
+      type: datetime
+      options:
+        comment: date last view profile
+    status:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: 0-disable, 1-enable, 3-private, 4-public, 5-allow search
+    view:
+      type: integer
+      nullable: true
+      options:
+        default: 0
+        comment: total view profile
+    created_at:
+      type: datetime
+      nullable: true
+    updated_at:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ setCreatedAtValue ]
+    preUpdate: [ setUpdatedAtValue ]

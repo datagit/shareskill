@@ -1,0 +1,3 @@
+my_data_source_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MyDataSourceBundle:Default:index }
