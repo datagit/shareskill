@@ -228,13 +228,13 @@ class UserController extends BaseController
     public function updateSkillAction(Request $request)
     {
         if ($request->isXMLHttpRequest()) {
-            $profileInfo = $this->getProfile();
-            if (empty($profileInfo)) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            if (empty($user)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'session timeout'));
             }
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DataSourceBundle:Profile')
-                ->find($profileInfo['id']);
+            $entity = $em->getRepository('MyDataSourceBundle:Resume')
+                ->findOneBy(array('user_id' => $user->getId()));
             if (empty($entity)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'profile not found'));
             }
@@ -278,13 +278,13 @@ class UserController extends BaseController
     public function removeSkillAction(Request $request)
     {
         if ($request->isXMLHttpRequest()) {
-            $profileInfo = $this->getProfile();
-            if (empty($profileInfo)) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            if (empty($user)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'session timeout'));
             }
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DataSourceBundle:Profile')
-                ->find($profileInfo['id']);
+            $entity = $em->getRepository('MyDataSourceBundle:Resume')
+                ->findOneBy(array('user_id' => $user->getId()));
             if (empty($entity)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'profile not found'));
             }
@@ -298,7 +298,7 @@ class UserController extends BaseController
             $em->persist($entity);
             $em->flush();
 
-            $html = $this->render('@Frontend/Default/_skill.html.twig',
+            $html = $this->render('@MyFrontend/User/_skill.html.twig',
                 array('skillJson' => json_encode($skill)))->getContent();
 
             return new JsonResponse(array('status' => 200, 'html' => $html));
@@ -311,13 +311,13 @@ class UserController extends BaseController
     public function updateEducationAction(Request $request)
     {
         if ($request->isXMLHttpRequest()) {
-            $profileInfo = $this->getProfile();
-            if (empty($profileInfo)) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            if (empty($user)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'session timeout'));
             }
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DataSourceBundle:Profile')
-                ->find($profileInfo['id']);
+            $entity = $em->getRepository('MyDataSourceBundle:Resume')
+                ->findOneBy(array('user_id' => $user->getId()));
             if (empty($entity)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'profile not found'));
             }
@@ -328,7 +328,7 @@ class UserController extends BaseController
             $eendTime = $request->request->get('eend_time', '');
             $eorder = $request->request->get('eorder', 0);
 
-            $education = (!$entity->getEducationJson()) ? array() : json_decode($entity->getEducationJson(), true);
+            $education = (!$entity->getCleaningJson()) ? array() : json_decode($entity->getCleaningJson(), true);
 
             if (empty($eorder)) {
                 $eorder = count($education);
@@ -350,7 +350,7 @@ class UserController extends BaseController
                 //update
                 $education[$key] = $item;
             }
-            $entity->setEducationJson(json_encode($education));
+            $entity->setCleaningJson(json_encode($education));
 
 
             $em->persist($entity);
@@ -368,28 +368,28 @@ class UserController extends BaseController
     public function removeEducationAction(Request $request)
     {
         if ($request->isXMLHttpRequest()) {
-            $profileInfo = $this->getProfile();
-            if (empty($profileInfo)) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            if (empty($user)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'session timeout'));
             }
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DataSourceBundle:Profile')
-                ->find($profileInfo['id']);
+            $entity = $em->getRepository('MyDataSourceBundle:Resume')
+                ->findOneBy(array('user_id' => $user->getId()));
             if (empty($entity)) {
                 return new JsonResponse(array('status' => 400, 'msg' => 'profile not found'));
             }
             $eid = $request->request->get('eid', '');
 
-            $education = (!$entity->getEducationJson()) ? array() : json_decode($entity->getEducationJson(), true);
+            $education = (!$entity->getCleaningJson()) ? array() : json_decode($entity->getCleaningJson(), true);
 
             ProfileHelper::remove($education, $eid);
-            $entity->setEducationJson(json_encode($education));
+            $entity->setCleaningJson(json_encode($education));
 
             $em->persist($entity);
             $em->flush();
 
-            $html = $this->render('@Frontend/Default/_education.html.twig',
-                array('educationJson' => json_encode($education)))->getContent();
+            $html = $this->render('@MyFrontend/User/_education.html.twig',
+                array('json' => json_encode($education)))->getContent();
 
             return new JsonResponse(array('status' => 200, 'html' => $html));
         }
