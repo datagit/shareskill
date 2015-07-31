@@ -2,3 +2,7 @@ services:
 #    my_user.example:
 #        class: My\UserBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+  my_user.registration.form.type:
+    class: My\UserBundle\Form\Type\RegistrationFormType
+    tags:
+        - { name: form.type, alias: my_user_registration }

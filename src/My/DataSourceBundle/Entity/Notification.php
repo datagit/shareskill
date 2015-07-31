@@ -169,7 +169,7 @@ class Notification
      */
     public function setCreatedAtValue()
     {
-        // Add your code here
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -177,6 +177,6 @@ class Notification
      */
     public function setUpdatedAtValue()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime();
     }
 }

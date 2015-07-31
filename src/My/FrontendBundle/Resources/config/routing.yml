@@ -1,0 +1,39 @@
+my_frontend_homepage:
+    path:     /
+    defaults: { _controller: MyFrontendBundle:Default:index }
+
+my_frontend_resume_edit:
+    path:     /resume/edit
+    defaults: { _controller: MyFrontendBundle:User:edit }
+
+my_frontend_resume_update:
+    path:     /resume/update
+    defaults: { _controller: MyFrontendBundle:User:update }
+
+my_frontend_jobhistory_update:
+    path:     /jobhistory/update
+    defaults: { _controller: MyFrontendBundle:User:updateJobsHistory }
+my_frontend_jobhistory_remove:
+    path:     /jobhistory/remove
+    defaults: { _controller: MyFrontendBundle:User:removeJobsHistoryProfile }
+
+my_frontend_skill_update:
+    path:     /skill/update
+    defaults: { _controller: MyFrontendBundle:User:updateSkill }
+my_frontend_skill_remove:
+    path:     /skill/remove
+    defaults: { _controller: MyFrontendBundle:User:removeSkill }
+
+my_frontend_education_update:
+    path:     /education/update
+    defaults: { _controller: MyFrontendBundle:User:updateEducation }
+my_frontend_education_remove:
+    path:     /education/remove
+    defaults: { _controller: MyFrontendBundle:User:removeEducation }
+
+my_frontend_photo_update:
+    path:     /photo/update
+    defaults: { _controller: MyFrontendBundle:User:updatePhoto }
+my_frontend_photo_view:
+    path:     /photo/view/{filename}-{size}
+    defaults: { _controller: MyFrontendBundle:User:viewPhoto }

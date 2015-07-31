@@ -20,7 +20,7 @@ My\DataSourceBundle\Entity\Resume:
     last_name:
       type: string
       length: 255
-    bithday:
+    birthday:
       type: datetime
       nullable: true
     phone:
@@ -47,6 +47,22 @@ My\DataSourceBundle\Entity\Resume:
       nullable: true
       options:
         comment: 1,2,3..
+    photo:
+      type: string
+      length: 255
+      nullable: true
+    sex:
+      type: integer
+      nullable: true
+      options:
+        default: 1
+        comment: 1-male, 2-female, 3-other
+    summary:
+      type: text
+      nullable: true
+    research_interests:
+      type: text
+      nullable: true
     cleaning_json:
       type: text
       nullable: true

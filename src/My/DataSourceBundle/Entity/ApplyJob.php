@@ -141,7 +141,7 @@ class ApplyJob
      */
     public function setCreatedAtValue()
     {
-        // Add your code here
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -149,6 +149,6 @@ class ApplyJob
      */
     public function setUpdatedAtValue()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime();
     }
 }

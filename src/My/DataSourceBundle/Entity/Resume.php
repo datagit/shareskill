@@ -37,12 +37,32 @@ class Resume
     /**
      * @var \DateTime
      */
-    private $bithday;
+    private $birthday;
 
     /**
      * @var string
      */
     private $phone;
+
+    /**
+     * @var string
+     */
+    private $photo;
+
+    /**
+     * @var integer
+     */
+    private $sex;
+
+    /**
+     * @var string
+     */
+    private $summary;
+
+    /**
+     * @var string
+     */
+    private $research_interests;
 
     /**
      * @var string
@@ -213,26 +233,26 @@ class Resume
     }
 
     /**
-     * Set bithday
+     * Set birthday
      *
-     * @param \DateTime $bithday
+     * @param \DateTime $birthday
      * @return Resume
      */
-    public function setBithday($bithday)
+    public function setBirthday($birthday)
     {
-        $this->bithday = $bithday;
+        $this->birthday = $birthday;
 
         return $this;
     }
 
     /**
-     * Get bithday
+     * Get birthday
      *
      * @return \DateTime 
      */
-    public function getBithday()
+    public function getBirthday()
     {
-        return $this->bithday;
+        return $this->birthday;
     }
 
     /**
@@ -548,6 +568,39 @@ class Resume
     }
 
     /**
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param string $photo
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSex()
+    {
+        return $this->sex;
+    }
+
+    /**
+     * @param int $sex
+     */
+    public function setSex($sex)
+    {
+        $this->sex = $sex;
+    }
+
+
+    /**
      * Get updated_at
      *
      * @return \DateTime 
@@ -556,12 +609,49 @@ class Resume
     {
         return $this->updated_at;
     }
+
+    /**
+     * @return string
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    /**
+     * @param string $summary
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResearchInterests()
+    {
+        return $this->research_interests;
+    }
+
+    /**
+     * @param string $research_interests
+     */
+    public function setResearchInterests($research_interests)
+    {
+        $this->research_interests = $research_interests;
+    }
+
+
+
+
+
     /**
      * @ORM\PrePersist
      */
     public function setCreatedAtValue()
     {
-        // Add your code here
+        $this->created_at = new \DateTime();
     }
 
     /**
@@ -569,6 +659,6 @@ class Resume
      */
     public function setUpdatedAtValue()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime();
     }
 }

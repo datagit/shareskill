@@ -1,0 +1,7 @@
+{% if json is not empty %}
+    {% set jobs = json | json_decode %}
+    {% set jobs = sort_by_order(jobs) %}
+    {% for job in jobs %}
+        {{ include('@MyFrontend/User/_job.html.twig', { 'job': job }) }}
+    {% endfor %}
+{% endif %}

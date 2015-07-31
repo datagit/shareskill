@@ -1,0 +1,9 @@
+services:
+#    my_frontend.example:
+#        class: My\FrontendBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    app.twig_extension:
+      class: My\FrontendBundle\Twig\FrontendExtension
+      public: false
+      tags:
+          - { name: twig.extension }
